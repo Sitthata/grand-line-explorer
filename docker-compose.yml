@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: pirate
+      POSTGRES_PASSWORD: onepiece
+      POSTGRES_DB: grand_line_explorer
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./server/db/init.sql:/docker-entrypoint-initdb.d/01-init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pirate -d grand_line_explorer"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  server:
+    image: node:20
+    working_dir: /app
+    command: sh -c "npm install && npx nodemon index.js"
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./server:/app
+      - server_node_modules:/app/node_modules
+    environment:
+      DATABASE_URL: postgresql://pirate:onepiece@db:5432/grand_line_explorer
+      PORT: 3001
+    depends_on:
+      db:
+        condition: service_healthy
+
+  client:
+    image: node:20
+    working_dir: /app
+    command: sh -c "npm install && npm run dev"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/app
+      - client_node_modules:/app/node_modules
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:3001
+    depends_on:
+      - server
+
+volumes:
+  pgdata:
+  server_node_modules:
+  client_node_modules:

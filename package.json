@@ -1,0 +1,16 @@
+{
+  "name": "grand-line-explorer",
+  "version": "1.0.0",
+  "description": "One Piece themed CRD application - Integrated Workshop",
+  "scripts": {
+    "dev": "docker compose up",
+    "dev:build": "docker compose up --build",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npx nodemon index.js",
+    "db:init": "docker compose exec db psql -U pirate -d grand_line_explorer -f /docker-entrypoint-initdb.d/01-init.sql",
+    "db:seed": "docker compose exec server node db/seed.js",
+    "db:reset": "docker compose exec db psql -U pirate -d grand_line_explorer -c 'DROP TABLE IF EXISTS characters, islands CASCADE;' && npm run db:init && npm run db:seed",
+    "stop": "docker compose down",
+    "clean": "docker compose down -v"
+  }
+}
