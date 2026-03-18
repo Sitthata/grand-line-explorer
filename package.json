@@ -11,6 +11,7 @@
     "db:seed": "docker compose exec server node db/seed.js",
     "db:reset": "docker compose exec db psql -U pirate -d grand_line_explorer -c 'DROP TABLE IF EXISTS characters, islands CASCADE;' && npm run db:init && npm run db:seed",
     "stop": "docker compose down",
-    "clean": "docker compose down -v"
+    "clean": "docker compose down -v",
+    "submodule:update": "git submodule update --remote && git add client server"
   }
 }
