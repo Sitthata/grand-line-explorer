@@ -33,7 +33,7 @@ This starts three Docker containers:
 | Service  | URL                    |
 | -------- | ---------------------- |
 | Frontend | http://localhost:3000  |
-| Backend  | http://localhost:8080  |
+| Backend  | http://localhost:3001  |
 | Database | localhost:5432         |
 
 ### 3. Initialize the database
