@@ -52,7 +52,7 @@ npm run db:seed
 
 ### 5. Start coding!
 
-Open `server/routes/islands.js` and `server/routes/characters.js` — implement the API endpoints described in the [server README](./server/README.md).
+Open `server/routes/islands.js` and `server/routes/characters.js` — implement the API endpoints described in the [server README](https://github.com/Sitthata/grand-line-explorer-server/blob/da6114d7cc2d458f8c2f0b1c09f0f8ee227468bf/README.md).
 
 ## Available Scripts
 
