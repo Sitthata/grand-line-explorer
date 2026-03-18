@@ -52,7 +52,9 @@ npm run db:seed
 
 ### 5. Start coding!
 
-Open `server/routes/islands.js` and `server/routes/characters.js` — implement the API endpoints described in the [server README](https://github.com/Sitthata/grand-line-explorer-server/blob/da6114d7cc2d458f8c2f0b1c09f0f8ee227468bf/README.md).
+Open `server/index.js` — implement the 6 API endpoints described in the [server README](./server/README.md).
+
+You can write all routes directly in `index.js`, or create your own folder structure (e.g. a `routes/` folder) — it's up to you!
 
 ## Available Scripts
 
@@ -72,13 +74,10 @@ Open `server/routes/islands.js` and `server/routes/characters.js` — implement 
 grand-line-explorer/
 ├── client/          # Next.js frontend (DO NOT EDIT)
 ├── server/          # Express.js backend (YOUR WORK HERE)
-│   ├── index.js     # Express app entry point
-│   ├── db/
-│   │   ├── pool.js  # PostgreSQL connection pool
-│   │   ├── init.sql # Table definitions
-│   │   └── seed.js  # Seed script
-│   └── routes/
-│       ├── islands.js     # Island endpoints (implement these)
-│       └── characters.js  # Character endpoints (implement these)
+│   ├── index.js     # Express app entry point (implement routes here)
+│   └── db/
+│       ├── pool.js  # PostgreSQL connection pool
+│       ├── init.sql # Table definitions
+│       └── seed.js  # Seed script
 └── docker-compose.yml
 ```
