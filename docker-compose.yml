@@ -46,8 +46,23 @@ services:
       NEXT_PUBLIC_API_URL: http://localhost:3001
     depends_on:
       - server
+    
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: secretpassword
+    ports:
+      - "5433:80"
+    depends_on:
+      - db
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
 
 volumes:
+  pgadmin_data:
   pgdata:
   server_node_modules:
   client_node_modules:
